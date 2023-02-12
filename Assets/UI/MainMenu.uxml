@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=391506bf57ca14f4cb6c25de45338455&amp;type=3#MenuStyles" />
+    <ui:VisualElement name="Menu" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+        <ui:VisualElement name="Left" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.49); width: 45%; height: 100%;">
+            <ui:VisualElement name="Logo" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Images/PngItem_1189135.png?fileID=2800000&amp;guid=4cbe27d63b6649943b2de5dd8b9dc68c&amp;type=3#PngItem_1189135&apos;); height: 50%; width: 100%; margin-bottom: 0; align-items: stretch;" />
+            <ui:VisualElement name="Buttons" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: center; height: 50%; width: 100%; align-items: center; padding-bottom: 20%; -unity-text-align: upper-center; white-space: normal; -unity-text-outline-color: rgba(255, 255, 255, 0.67); -unity-text-outline-width: 5px;">
+                <ui:Button text="Play&#10;" display-tooltip-when-elided="true" name="PlayButton" class="menu-button" />
+                <ui:Button text="Settings&#10;" display-tooltip-when-elided="true" name="SettingsButton" class="menu-button" />
+                <ui:Button text="Exit&#10;" display-tooltip-when-elided="true" name="ExitButton" class="menu-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Right" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: flex-end; justify-content: flex-end; padding-left: 25px; padding-right: 25px; padding-top: 25px; padding-bottom: 25px;">
+            <ui:Button text="Mute" display-tooltip-when-elided="true" name="MuteButton" class="menu-button" style="width: 200px; height: 100px; background-image: none;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

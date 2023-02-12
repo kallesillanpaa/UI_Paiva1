@@ -1,0 +1,6 @@
+1) Luodaan main menun taustakuva:
+1.1) kuvasta (tai)
+1.2) tehdään plane, jolle asetaan assetteja
+1.21) Lisätään post-processing, esim. Vignette/Bloom
+
+2) Luodaan simppeli animaatio (edestakainen tms.) 
