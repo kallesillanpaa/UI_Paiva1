@@ -9,8 +9,6 @@
                 <ui:Button text="Exit&#10;" display-tooltip-when-elided="true" name="ExitButton" class="menu-button" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Right" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: flex-end; justify-content: flex-end; padding-left: 25px; padding-right: 25px; padding-top: 25px; padding-bottom: 25px;">
-            <ui:Button text="Mute" display-tooltip-when-elided="true" name="MuteButton" class="menu-button" style="width: 200px; height: 100px; background-image: none;" />
-        </ui:VisualElement>
+        <ui:VisualElement name="Right" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: flex-end; justify-content: flex-end; padding-left: 25px; padding-right: 25px; padding-top: 25px; padding-bottom: 25px;" />
     </ui:VisualElement>
 </ui:UXML>

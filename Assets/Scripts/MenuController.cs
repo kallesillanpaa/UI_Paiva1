@@ -1,79 +1,72 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class MenuController : MonoBehaviour
 {
-    //1
+
     UIDocument doc;
-    Button playButton, settingsButton, exitButton, muteButton;
+    Button playButton, settingsButton, exitButton, backButton;
 
-    //4
-    Button backButton;
+    VisualElement buttons; //parent of play, settings, quit -buttons
 
-    //2
-    VisualElement buttons;
+    [SerializeField]VisualTreeAsset settingsButtonTemplate; //tree of visual element assets, made from UXML-file
 
-    //3
-    [SerializeField]
-    VisualTreeAsset settingsButtonTemplate; 
-    VisualElement settingsButtons; //Create based on the file above
+    VisualElement settingsButtons; //parent of settings -buttons
 
 
     private void Awake()
     {
-        //1
-        doc = GetComponent<UIDocument>();
-        playButton = doc.rootVisualElement.Q<Button>("PlayButton");
+
+        doc = GetComponent<UIDocument>(); 
+        playButton = doc.rootVisualElement.Q<Button>("PlayButton"); //rootVisualElement = UI layout's "root" visual element 
+                                                //Q<Type to search>("Name of element") //Q=Query
         settingsButton = doc.rootVisualElement.Q<Button>("SettingsButton");
         exitButton = doc.rootVisualElement.Q<Button>("ExitButton");
-        muteButton = doc.rootVisualElement.Q<Button>("MuteButton");
 
-        //playButton.clicked+= ()=> Debug.Log("play button clicked");
-        playButton.clicked += PlayButtonOnClicked;
-        exitButton.clicked += () => UnityEditor.EditorApplication.isPlaying = false;  //Application.Quit();
+        playButton.clicked+= ()=> Debug.Log("play button clicked"); // anonymous function (lambda) used here, since simple debug call only
+        playButton.clicked += PlayButtonOnClicked; //add function to button click-event, possible to add many functions (like here)
+                                                   //or also remove functions with -=
+
+    //NOTE: .clicked works with buttons. However, if some other than button is clicked, possible to register/unregister event callbacks:
+    // https://docs.unity.cn/ru/2020.1/Manual/UIE-Events-Handling.html
+
+
+        exitButton.clicked += ExitButtonOnClicked;
         
-        //2
         settingsButton.clicked += SettingsButtonOnClicked;        
         buttons = doc.rootVisualElement.Q<VisualElement>("Buttons");
 
-        //3
-        settingsButtons = settingsButtonTemplate.CloneTree();
-        //4
-        backButton = settingsButtons.Q<Button>("BackButton"); //huom. settingsButtons, ei doc
+        settingsButtons = settingsButtonTemplate.CloneTree(); //returns the root of the created visual elements tree
+
+        backButton = settingsButtons.Q<Button>("BackButton"); //NOTICE! settingsButtons here instead of rootVisualElement, since we're 
+                                                            // searching button from the settingsButtons
         backButton.clicked += BackButtonOnClicked;
     }
 
     void PlayButtonOnClicked()
     {
-        //1
         Debug.Log("Clicked play..");
     }
 
     void ExitButtonOnClicked()
     {
-        //1
-    #if UNITY_EDITOR
+    #if UNITY_EDITOR //if program is launched from Unity
             UnityEditor.EditorApplication.isPlaying = false;
-    #elif UNITY_WEBPLAYER
+    #elif UNITY_WEBPLAYER //if program is launched from browser
              Application.OpenURL(webplayerQuitURL);
-    #else
+    #else   //normal quitting, as f.ex in standalone build
              Application.Quit();
     #endif
     }
 
     void SettingsButtonOnClicked()
     {
-        //2
-        buttons.Clear();
-        //3
-        buttons.Add(settingsButtons);
+        buttons.Clear(); //removes all child elements of buttons
+        buttons.Add(settingsButtons); //adds settingsButtons-visual element
     }
 
     void BackButtonOnClicked()
     {
-        //4
         buttons.Clear();
         buttons.Add(playButton);        
         buttons.Add(settingsButton);
